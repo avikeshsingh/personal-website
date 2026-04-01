@@ -6,6 +6,22 @@
   <title>Avi — Web Designer & Creative</title>
   <meta name="description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
 
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://avisingh.studio/" />
+  <meta property="og:title"       content="Avi — Web Designer & Creative" />
+  <meta property="og:description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
+  <meta property="og:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Avi — Web Designer & Creative" />
+  <meta name="twitter:description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
+  <meta name="twitter:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://avisingh.studio/" />
+
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
@@ -211,6 +227,7 @@
       margin: 0;
     }
 
+
     /* Scroll reveal — hidden until IntersectionObserver fires */
     .reveal {
       opacity: 0;
@@ -341,7 +358,7 @@
       transition: transform var(--transition), opacity var(--transition), width var(--transition);
     }
 
-    /* Animate lines → × when open */
+    /* Animate lines →&#xFE0E; × when open */
     .nav-menu-btn.is-open .nav-menu-lines span:nth-child(1) {
       transform: translateY(2.5px) rotate(45deg);
     }
@@ -563,25 +580,28 @@
       overflow: hidden;
     }
 
-    /* Subtle architectural grid */
+    /* Dot grid with fade-edges mask and slow drift */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
-      background-size: 88px 88px;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.22) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 28s linear infinite;
+      mask-image:
+        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      mask-composite: intersect;
+      -webkit-mask-image:
+        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-composite: source-in;
       pointer-events: none;
     }
 
-    /* Radial vignette */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 65% 45%, transparent 25%, rgba(10,10,10,0.55) 65%, var(--color-bg) 92%);
-      pointer-events: none;
+    @keyframes gridDrift {
+      from { background-position: 0 0; }
+      to   { background-position: 60px 60px; }
     }
 
     .hero-content {
@@ -1623,9 +1643,9 @@
     <div class="nav-overlay-footer">
       <span class="nav-overlay-location">Melbourne, Australia</span>
       <div class="nav-overlay-socials">
-        <a href="https://instagram.com/avitheblingsingh" target="_blank" rel="noopener" class="nav-overlay-social">Instagram ↗</a>
-        <a href="https://x.com/avikesh_singh"         target="_blank" rel="noopener" class="nav-overlay-social">X (Twitter) ↗</a>
-        <a href="mailto:avi@avisingh.studio"         target="_blank" rel="noopener" class="nav-overlay-social">avi@avisingh.studio ↗</a>
+        <a href="https://instagram.com/avitheblingsingh" target="_blank" rel="noopener" class="nav-overlay-social">Instagram ↗&#xFE0E;</a>
+        <a href="https://x.com/avikesh_singh"         target="_blank" rel="noopener" class="nav-overlay-social">X (Twitter) ↗&#xFE0E;</a>
+        <a href="mailto:avi@avisingh.studio" class="nav-overlay-social">avi@avisingh.studio ↗&#xFE0E;</a>
       </div>
     </div>
 
@@ -1639,7 +1659,7 @@
     <a href="#hero" class="nav-logo"><img src="assets/logo.svg" alt="Avi" /></a>
     <span></span>
     <div class="nav-right">
-      <a href="#contact" class="nav-talk">Let's Talk ↗</a>
+      <a href="#contact" class="nav-talk">Let's Talk ↗&#xFE0E;</a>
       <button class="nav-menu-btn" id="navHamburger" aria-label="Open menu" aria-expanded="false">
         <span class="nav-menu-label">Menu</span>
         <span class="nav-menu-lines">
@@ -1677,7 +1697,7 @@
         <div class="hero-right">
           <p class="hero-tagline">Helping brands look like they mean it.</p>
           <div class="hero-actions">
-            <a href="#work" class="btn-primary">View Work ↗</a>
+            <a href="#work" class="btn-primary">View Work ↗&#xFE0E;</a>
             <a href="#contact" class="btn-ghost">Get in Touch</a>
           </div>
         </div>
@@ -1770,12 +1790,12 @@
           <p class="gallery-desc">Brands built from the ground up — identity, web, and everything in between.</p>
         </div>
         <div class="gallery-nav">
-          <button class="gallery-btn" id="galleryPrev" aria-label="Previous project">←</button>
-          <button class="gallery-btn" id="galleryNext" aria-label="Next project">→</button>
+          <button class="gallery-btn" id="galleryPrev" aria-label="Previous project">←&#xFE0E;</button>
+          <button class="gallery-btn" id="galleryNext" aria-label="Next project">→&#xFE0E;</button>
         </div>
       </div>
       <p class="gallery-swipe-hint" id="gallerySwipeHint">
-        <span class="gallery-swipe-arrow" aria-hidden="true">→</span>
+        <span class="gallery-swipe-arrow" aria-hidden="true">→&#xFE0E;</span>
         Swipe to explore
       </p>
     </div>
@@ -1786,12 +1806,12 @@
         <!-- Case Study 01: CodeDesignLab -->
         <div class="gallery-item">
           <a href="work/cdl/" class="gallery-card">
-            <img src="images/cdl-cover-home.png" alt="CodeDesignLab" />
+            <img src="images/cdl-cover-home.png" alt="CodeDesignLab" loading="lazy" />
             <div class="gallery-card-overlay"></div>
             <div class="gallery-card-content">
               <h3 class="gallery-card-title">CodeDesignLab</h3>
               <p class="gallery-card-desc">Brand identity, web design, and social assets for an innovative design and development studio.</p>
-              <span class="gallery-card-link">View case study ↗</span>
+              <span class="gallery-card-link">View case study ↗&#xFE0E;</span>
             </div>
           </a>
         </div>
@@ -1913,15 +1933,15 @@
           <div class="contact-socials reveal reveal-delay-3">
             <a href="https://instagram.com/avitheblingsingh" target="_blank" rel="noopener" class="social-link">
               <span>Instagram</span>
-              <span>@avitheblingsingh ↗</span>
+              <span>@avitheblingsingh ↗&#xFE0E;</span>
             </a>
             <a href="https://x.com/avikesh_singh" target="_blank" rel="noopener" class="social-link">
               <span>X (Twitter)</span>
-              <span>@avikesh_singh ↗</span>
+              <span>@avikesh_singh ↗&#xFE0E;</span>
             </a>
             <a href="https://github.com/avikeshsingh" target="_blank" rel="noopener" class="social-link">
               <span>GitHub</span>
-              <span>@avikeshsingh ↗</span>
+              <span>@avikeshsingh ↗&#xFE0E;</span>
             </a>
           </div>
         </div>
@@ -1952,7 +1972,7 @@
   <footer class="footer">
     <a href="#hero" class="footer-logo"><img src="assets/logo.svg" alt="Avi" /></a>
     <span class="footer-copy">© 2026 Avi. Designed &amp; built with intent.</span>
-    <a href="#hero" class="footer-back">Back to top ↑</a>
+    <a href="#hero" class="footer-back">Back to top ↑&#xFE0E;</a>
   </footer>
 
 
