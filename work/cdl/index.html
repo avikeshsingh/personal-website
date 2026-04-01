@@ -6,6 +6,22 @@
   <title>CodeDesignLab — Case Study | Avi</title>
   <meta name="description" content="How Avi built CodeDesignLab from zero — brand identity, digital storefront, social assets, and ad campaigns." />
 
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://avisingh.studio/work/cdl/" />
+  <meta property="og:title"       content="CodeDesignLab — Case Study | Avi" />
+  <meta property="og:description" content="How Avi built CodeDesignLab from zero — brand identity, digital storefront, social assets, and ad campaigns." />
+  <meta property="og:image"       content="https://avisingh.studio/work/cdl/images/cdl-cover.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="CodeDesignLab — Case Study | Avi" />
+  <meta name="twitter:description" content="How Avi built CodeDesignLab from zero — brand identity, digital storefront, social assets, and ad campaigns." />
+  <meta name="twitter:image"       content="https://avisingh.studio/work/cdl/images/cdl-cover.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://avisingh.studio/work/cdl/" />
+
   <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png" />
@@ -258,18 +274,30 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
-      background-size: 80px 80px;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.22) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 28s linear infinite;
+      mask-image:
+        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      mask-composite: intersect;
+      -webkit-mask-image:
+        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-composite: source-in;
       pointer-events: none;
+    }
+
+    @keyframes gridDrift {
+      from { background-position: 0 0; }
+      to   { background-position: 60px 60px; }
     }
 
     .cs-hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, transparent 20%, rgba(10,10,10,0.5) 65%, var(--color-bg) 92%);
+      background: transparent;
       pointer-events: none;
     }
 
@@ -288,6 +316,23 @@
       margin-bottom: var(--space-md);
       opacity: 0;
       animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
+    }
+
+    .cs-hero-url {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: var(--space-lg);
+      transition: color var(--transition);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+
+    .cs-hero-url:hover {
+      color: var(--color-highlight);
     }
 
     .cs-hero-bottom {
@@ -673,7 +718,7 @@
        NAVIGATION
   ============================================= -->
   <nav class="nav" id="mainNav">
-    <a href="../../" class="nav-back">← Back to Portfolio</a>
+    <a href="../../" class="nav-back">←&#xFE0E; Back to Portfolio</a>
     <span class="nav-year"><b>CODEDESIGNLAB</b>, 2024 — 2026</span>
   </nav>
 
@@ -681,10 +726,14 @@
   <!-- =============================================
        HERO
   ============================================= -->
-  <section class="cs-hero">
+  <section class="cs-hero" id="hero">
     <div class="cs-hero-content container">
 
       <h1 class="cs-hero-title">CodeDesignLab</h1>
+
+      <a href="https://codedesignlab.net" target="_blank" rel="noopener" class="cs-hero-url">
+        codedesignlab.net ↗&#xFE0E;
+      </a>
 
       <div class="cs-hero-bottom">
         <div class="cs-meta-item">
@@ -716,12 +765,6 @@
   ============================================= -->
   <div class="container">
 
-    <!-- Hero image -->
-    <div class="cs-image cs-image-full reveal">
-      <img src="images/cdl-cover.jpg" alt="CodeDesignLab" />
-    </div>
-
-
     <!-- Overview -->
     <div class="cs-section">
       <div class="cs-section-inner">
@@ -741,6 +784,10 @@
               creative community: resources, education, and a visual identity strong enough
               to stand alongside the established names in the design ecosystem.
             </p>
+          </div>
+
+          <div class="cs-image cs-image-wide reveal">
+            <img src="images/cdl-website.png" alt="CodeDesignLab Website" loading="lazy" />
           </div>
 
           <div class="cs-image cs-image-wide reveal">
@@ -863,8 +910,8 @@
         <p class="cs-heading" style="font-size: clamp(1.5rem, 3vw, 2.5rem);">Want something like this?</p>
       </div>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="../../#contact" class="btn-primary">Start a Project ↗</a>
-        <a href="../../"         class="btn-ghost">← Back to Portfolio</a>
+        <a href="../../#contact" class="btn-primary">Start a Project ↗&#xFE0E;</a>
+        <a href="../../"         class="btn-ghost">←&#xFE0E; Back to Portfolio</a>
       </div>
     </div>
 
@@ -877,7 +924,7 @@
   <footer class="footer">
     <a href="../../" class="footer-logo"><img src="../../assets/logo.svg" alt="Avi" /></a>
     <span class="footer-copy">© 2026 Avi. Designed &amp; built with intent.</span>
-    <a href="#" class="footer-back">Back to top ↑</a>
+    <a href="#hero" class="footer-back">Back to top ↑&#xFE0E;</a>
   </footer>
 
 
