@@ -6,6 +6,22 @@
   <title>Barbershop — Coming Soon | Avi</title>
   <meta name="description" content="Barbershop case study coming soon. Web design and social media assets for a local Melbourne barbershop." />
 
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://avisingh.studio/work/barbershop/" />
+  <meta property="og:title"       content="Barbershop — Coming Soon | Avi" />
+  <meta property="og:description" content="Barbershop case study coming soon. Web design and social media assets for a local Melbourne barbershop." />
+  <meta property="og:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Barbershop — Coming Soon | Avi" />
+  <meta name="twitter:description" content="Barbershop case study coming soon. Web design and social media assets for a local Melbourne barbershop." />
+  <meta name="twitter:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://avisingh.studio/work/barbershop/" />
+
   <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png" />
@@ -168,19 +184,23 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
-      background-size: 80px 80px;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.22) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 28s linear infinite;
+      mask-image:
+        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      mask-composite: intersect;
+      -webkit-mask-image:
+        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-composite: source-in;
       pointer-events: none;
     }
 
-    .main::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(10,10,10,0.6) 70%, var(--color-bg) 95%);
-      pointer-events: none;
+    @keyframes gridDrift {
+      from { background-position: 0 0; }
+      to   { background-position: 60px 60px; }
     }
 
     .main-content {
