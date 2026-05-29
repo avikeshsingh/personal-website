@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Avi — Web Designer & Creative</title>
-  <meta name="description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
+  <title>avisingh.studio - Web Design, Brand Design & Social Media Marketing</title>
+  <meta name="description" content="avisingh.studio is a Melbourne-based creative agency. Specialising in web design, brand design, and social media marketing." />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://avisingh.studio/" />
-  <meta property="og:title"       content="Avi — Web Designer & Creative" />
-  <meta property="og:description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
-  <meta property="og:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
+  <meta property="og:title"       content="avisingh.studio - Creative Agency" />
+  <meta property="og:description" content="avisingh.studio is a Melbourne-based creative agency. Specialising in web design, brand design, and social media marketing." />
+  <meta property="og:image"       content="https://avisingh.studio/images/og-card.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Avi — Web Designer & Creative" />
-  <meta name="twitter:description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
-  <meta name="twitter:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
+  <meta name="twitter:title"       content="avisingh.studio - Creative Agency" />
+  <meta name="twitter:description" content="avisingh.studio is a Melbourne-based creative agency. Specialising in web design, brand design, and social media marketing." />
+  <meta name="twitter:image"       content="https://avisingh.studio/images/og-card.png" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://avisingh.studio/" />
@@ -36,7 +36,6 @@
     /* =============================================
        1. CSS CUSTOM PROPERTIES (Design Tokens)
        All colours, fonts, spacing live here.
-       Change these to retheme the whole site.
     ============================================= */
 
     :root {
@@ -616,7 +615,7 @@
       color: var(--color-muted);
       margin-bottom: var(--space-md);
       padding-bottom: var(--space-md);
-      border-bottom: 1px solid rgba(255,255,255,0.09);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.15s;
     }
@@ -645,7 +644,7 @@
       gap: var(--space-md);
       align-items: center;
       padding-top: var(--space-md);
-      border-top: 1px solid rgba(255,255,255,0.09);
+      border-top: 1px solid rgba(255,255,255,0.05);
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.45s;
     }
@@ -1356,7 +1355,7 @@
 
     .availability-pill {
       position: fixed;
-      bottom: var(--space-md);
+      bottom: var(--space-lg);
       left: var(--space-md);
       z-index: 400;
       display: flex;
@@ -1412,7 +1411,7 @@
       font-weight: var(--weight-bold);
       line-height: 1;
       letter-spacing: -0.03em;
-      color: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.09);
       padding: var(--space-lg) var(--space-md) 0.35em;
       white-space: nowrap;
       user-select: none;
@@ -1426,7 +1425,7 @@
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       gap: var(--space-sm);
-      padding: var(--space-md) var(--space-md) var(--space-md) calc(var(--space-md) + 120px);
+      padding: var(--space-md) var(--space-md) var(--space-md) var(--space-md);
     }
 
     @media (max-width: 768px) {
@@ -1611,7 +1610,7 @@
 
     <!-- Mirrors the main nav bar — logo · close -->
     <div class="nav-overlay-bar">
-      <a href="#hero" class="nav-overlay-logo"><img src="assets/logo.svg" alt="Avi" /></a>
+      <a href="#hero" class="nav-overlay-logo"><img src="assets/logo.svg" alt="avisingh.studio logo" /></a>
       <button class="nav-overlay-close" id="navClose" aria-label="Close menu">Close ✕</button>
     </div>
 
@@ -1623,7 +1622,7 @@
         <a href="#services" data-num="03" class="nav-overlay-link">Services</a>
         <a href="#contact"  data-num="04" class="nav-overlay-link">Contact</a>
       </nav>
-      <!-- Massive "AVI." behind navigation -->
+      <!-- Massive text behind navigation -->
       <div class="nav-overlay-name" aria-hidden="true">avisingh.studio</div>
     </div>
 
@@ -1644,7 +1643,7 @@
        NAVIGATION
   ============================================= -->
   <nav class="nav" id="mainNav">
-    <a href="#hero" class="nav-logo"><img src="assets/logo.svg" alt="Avi" /></a>
+    <a href="#hero" class="nav-logo"><img src="assets/logo.svg" alt="Logo" /></a>
     <div class="nav-right">
       <a href="#contact" class="nav-talk">Let's Talk ↗&#xFE0E;</a>
       <button class="nav-menu-btn" id="navHamburger" aria-label="Open menu" aria-expanded="false">
@@ -1963,8 +1962,8 @@
   <footer class="footer">
     <span class="footer-wordmark" aria-hidden="true">avisingh.studio</span>
     <div class="footer-bottom">
-      <a href="#hero" class="footer-logo"><img src="assets/logo.svg" alt="Avi" /></a>
-      <span class="footer-copy">© 2026 Avi. Designed &amp; built with intent.</span>
+      <a href="#hero" class="footer-logo"><img src="assets/logo.svg" alt="Footer Logo" /></a>
+      <span class="footer-copy">© 2026 Avi. Designed &amp; built in Melbourne, Australia.</span>
       <a href="#hero" class="footer-back">Back to top ↑&#xFE0E;</a>
     </div>
   </footer>
