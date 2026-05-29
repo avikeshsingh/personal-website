@@ -11,13 +11,13 @@
   <meta property="og:url"         content="https://avisingh.studio/" />
   <meta property="og:title"       content="Avi — Web Designer & Creative" />
   <meta property="og:description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
-  <meta property="og:image"       content="https://avisingh.studio/images/og-card.png" />
+  <meta property="og:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Avi — Web Designer & Creative" />
   <meta name="twitter:description" content="Avi is a Melbourne-based web designer and creative, founder of CodeDesignLab. Specialising in web design, brand identity, and social media assets." />
-  <meta name="twitter:image"       content="https://avisingh.studio/images/og-card.png" />
+  <meta name="twitter:image"       content="https://avisingh.studio/images/cdl-cover-home.png" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://avisingh.studio/" />
@@ -29,7 +29,7 @@
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,700;1,300&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
 
   <style>
 
@@ -50,6 +50,7 @@
       --color-highlight: #ffffff;
 
       /* Typography */
+      --font-display:    'Cormorant', Georgia, serif;
       --font-primary:    'Poppins', sans-serif;
       --weight-light:    300;
       --weight-regular:  400;
@@ -223,8 +224,16 @@
 
     .divider {
       border: none;
-      border-top: 1px solid var(--color-border);
+      height: 1px;
+      background: var(--color-border);
       margin: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .divider.is-visible {
+      transform: scaleX(1);
     }
 
 
@@ -258,13 +267,13 @@
       z-index: 500;
       padding: 1rem var(--space-md);
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: auto 1fr;
       align-items: center;
       gap: var(--space-md);
-      background: rgba(10, 10, 10, 0.82);
+      background: rgba(10, 10, 10, 0.58);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid rgba(255,255,255,0.09);
       transition: box-shadow 0.5s ease;
     }
 
@@ -283,18 +292,6 @@
       height: 28px;
       width: auto;
       display: block;
-    }
-
-    /* Centre descriptor — small ambient label */
-    .nav-descriptor {
-      font-size: 0.62rem;
-      font-weight: var(--weight-semibold);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--color-muted);
-      text-align: center;
-      pointer-events: none;
-      user-select: none;
     }
 
     /* Right side: talk link + menu button */
@@ -518,6 +515,7 @@
       position: absolute;
       bottom: -0.18em;
       left: calc(var(--space-md) - 0.05em);
+      font-family: var(--font-display);
       font-size: clamp(8rem, 30vw, 26rem);
       font-weight: var(--weight-bold);
       color: rgba(255, 255, 255, 0.04);
@@ -572,36 +570,31 @@
 
     .hero {
       min-height: 100vh;
-      padding-top: 72px;  /* nav height */
-      padding-bottom: 72px; /* equal to top so content sits true-centre */
+      padding-top: 80px;
+      padding-bottom: 140px;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
     }
 
-    /* Dot grid with fade-edges mask and slow drift */
+    /* Ambient radial glow — three soft orbs creating depth */
     .hero::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.22) 1px, transparent 1px);
-      background-size: 60px 60px;
-      animation: gridDrift 28s linear infinite;
-      mask-image:
-        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
-        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-      mask-composite: intersect;
-      -webkit-mask-image:
-        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
-        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-      -webkit-mask-composite: source-in;
+      inset: -10%;
+      background:
+        radial-gradient(ellipse 75% 65% at 22% 35%, rgba(255,255,255,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 45% at 82% 12%, rgba(255,255,255,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 70% 88%, rgba(255,255,255,0.09) 0%, transparent 55%);
       pointer-events: none;
+      will-change: transform;
+      animation: ambientDrift 20s ease-in-out infinite alternate;
     }
 
-    @keyframes gridDrift {
-      from { background-position: 0 0; }
-      to   { background-position: 60px 60px; }
+    @keyframes ambientDrift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(2%, 1.5%) scale(1.06); }
     }
 
     .hero-content {
@@ -610,26 +603,6 @@
       width: 100%;
     }
 
-    /* Decorative rotating star — top right */
-    .hero-deco {
-      position: absolute;
-      top: 110px;
-      right: calc(var(--space-md) + 20px);
-      z-index: 2;
-      width: 52px;
-      height: 52px;
-      color: rgba(255, 255, 255, 0.1);
-      animation: spinStar 25s linear infinite;
-    }
-
-    .hero-deco svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    @keyframes spinStar {
-      to { transform: rotate(360deg); }
-    }
 
     /* Eyebrow row — location left, status right */
     .hero-eyebrow {
@@ -643,21 +616,26 @@
       color: var(--color-muted);
       margin-bottom: var(--space-md);
       padding-bottom: var(--space-md);
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid rgba(255,255,255,0.09);
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.15s;
     }
 
     /* The massive editorial name */
     .hero-name {
-      font-size: clamp(5rem, 21vw, 17rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 8.5vw, 7.5rem);
       font-weight: var(--weight-bold);
-      line-height: 0.92;
-      letter-spacing: -0.03em;
+      line-height: 0.88;
+      letter-spacing: -0.01em;
       color: var(--color-highlight);
       margin-bottom: var(--space-md);
+    }
+
+    .hero-char {
+      display: inline-block;
       opacity: 0;
-      animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.25s;
+      animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     /* Bottom info row */
@@ -667,7 +645,7 @@
       gap: var(--space-md);
       align-items: center;
       padding-top: var(--space-md);
-      border-top: 1px solid var(--color-border);
+      border-top: 1px solid rgba(255,255,255,0.09);
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.45s;
     }
@@ -687,9 +665,9 @@
     .hero-right { display: contents; }
 
     .hero-tagline {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-weight: var(--weight-light);
-      color: var(--color-muted);
+      color: var(--color-text);
       line-height: 1.75;
     }
 
@@ -775,12 +753,6 @@
 
 
     /* =============================================
-       10. MARQUEE STRIP
-    ============================================= */
-
-
-
-    /* =============================================
        11. ABOUT
     ============================================= */
 
@@ -795,10 +767,11 @@
     }
 
     .about-heading {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
       font-weight: var(--weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
       color: var(--color-highlight);
       margin-bottom: 0;
     }
@@ -877,53 +850,6 @@
       50%       { opacity: 0.4; }
     }
 
-    .about-cdl {
-      margin-top: var(--space-lg);
-      padding: var(--space-md);
-      border: 1px solid var(--color-border);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-sm);
-      background: var(--color-bg);
-      transition: border-color var(--transition);
-    }
-
-    .about-cdl:hover {
-      border-color: var(--color-muted);
-    }
-
-    .about-cdl-text {
-      font-size: 0.78rem;
-      color: var(--color-muted);
-    }
-
-    .about-cdl-text strong {
-      display: block;
-      font-size: 0.88rem;
-      color: var(--color-text);
-      font-weight: var(--weight-semibold);
-      margin-bottom: 0.15rem;
-    }
-
-    .about-cdl-link {
-      font-size: 0.7rem;
-      font-weight: var(--weight-semibold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-muted);
-      border: 1px solid var(--color-border);
-      padding: 0.5rem 1rem;
-      border-radius: 2px;
-      white-space: nowrap;
-      transition: color var(--transition), border-color var(--transition);
-    }
-
-    .about-cdl-link:hover {
-      color: var(--color-highlight);
-      border-color: var(--color-muted);
-    }
 
 
     /* =============================================
@@ -945,10 +871,11 @@
     }
 
     .work-heading {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
       font-weight: var(--weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
       color: var(--color-highlight);
     }
 
@@ -960,250 +887,8 @@
       font-weight: var(--weight-light);
     }
 
-    .gallery-nav {
-      display: none;
-      gap: 0.5rem;
-      flex-shrink: 0;
-      padding-bottom: 0.4rem;
-    }
-
-    @media (min-width: 768px) {
-      .gallery-nav { display: flex; }
-    }
-
-    .gallery-btn {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      border: 1px solid var(--color-border);
-      background: transparent;
-      color: var(--color-muted);
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color var(--transition), color var(--transition);
-      cursor: none;
-    }
-
-    .gallery-btn:hover:not(:disabled) {
-      border-color: var(--color-muted);
-      color: var(--color-highlight);
-    }
-
-    .gallery-btn:disabled {
-      opacity: 0.25;
-    }
-
-    /* Full-bleed overflow container — negates section's horizontal padding */
-    .gallery-overflow {
-      width: calc(100% + 2 * var(--space-md));
-      margin-left: calc(-1 * var(--space-md));
-      overflow: hidden;
-    }
-
-    .gallery-track {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      scroll-behavior: smooth;
-      padding-left: max(var(--space-md), calc((100vw - var(--max-width)) / 2 + var(--space-md)));
-      padding-right: var(--space-md);
-      gap: 20px;
-    }
-
-    .gallery-track::-webkit-scrollbar { display: none; }
-
-    .gallery-item {
-      flex: 0 0 min(300px, calc(100vw - 3 * var(--space-md)));
-      scroll-snap-align: start;
-    }
-
-    @media (min-width: 768px) {
-      .gallery-item { flex: 0 0 340px; }
-    }
-
-    @media (min-width: 1024px) {
-      .gallery-item { flex: 0 0 380px; }
-    }
-
-    /* Swipe hint — mobile only */
     @media (max-width: 767px) {
-      .gallery-header {
-        margin-bottom: var(--space-sm);
-      }
-    }
-
-    .gallery-swipe-hint {
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-muted);
-      font-weight: var(--weight-semibold);
-      margin-bottom: var(--space-md);
-      opacity: 1;
-      transition: opacity 0.5s ease;
-    }
-
-    .gallery-swipe-hint.is-hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .gallery-swipe-arrow {
-      display: inline-block;
-      animation: swipeNudge 1.4s ease-in-out infinite;
-    }
-
-    @keyframes swipeNudge {
-      0%, 100% { transform: translateX(0); }
-      50%       { transform: translateX(5px); }
-    }
-
-    @media (max-width: 767px) {
-      .gallery-swipe-hint { display: flex; }
-    }
-
-    /* Card */
-    .gallery-card {
-      display: block;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      aspect-ratio: 3 / 4;
-      background: var(--color-surface);
-    }
-
-    .gallery-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .gallery-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .gallery-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(10,10,10,0.92) 0%,
-        rgba(10,10,10,0.5) 40%,
-        rgba(10,10,10,0.08) 70%,
-        transparent 100%
-      );
-    }
-
-    .gallery-card-content {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 1.5rem;
-      color: var(--color-highlight);
-    }
-
-    .gallery-card-title {
-      font-size: 1.1rem;
-      font-weight: var(--weight-semibold);
-      margin-bottom: 0.55rem;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-
-    .gallery-card-desc {
-      font-size: 0.8rem;
-      color: rgba(240, 240, 240, 0.65);
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: 1.4rem;
-      font-weight: var(--weight-light);
-    }
-
-    .gallery-card-link {
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: rgba(240, 240, 240, 0.7);
-      transition: gap var(--transition), color var(--transition);
-      font-weight: var(--weight-semibold);
-    }
-
-    .gallery-card:hover .gallery-card-link {
-      gap: 0.8rem;
-      color: var(--color-highlight);
-    }
-
-    /* Coming soon variant */
-    .gallery-card--soon {
-      pointer-events: none;
-      opacity: 0.4;
-    }
-
-    /* Placeholder grid (no image) */
-    .gallery-card-placeholder {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 52px 52px;
-    }
-
-    .gallery-card-badge {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      font-size: 0.58rem;
-      font-weight: var(--weight-semibold);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--color-muted);
-      border: 1px solid var(--color-border);
-      padding: 0.28rem 0.7rem;
-      border-radius: 2px;
-      background: rgba(10, 10, 10, 0.7);
-      z-index: 2;
-    }
-
-    /* Dots */
-    .gallery-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: var(--space-md);
-    }
-
-    .gallery-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--color-border);
-      border: none;
-      padding: 0;
-      cursor: none;
-      transition: background var(--transition);
-    }
-
-    .gallery-dot.is-active {
-      background: var(--color-highlight);
+      .gallery-header { margin-bottom: var(--space-sm); }
     }
 
 
@@ -1222,10 +907,11 @@
     }
 
     .services-heading {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
       font-weight: var(--weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
       color: var(--color-highlight);
       max-width: 600px;
     }
@@ -1244,6 +930,22 @@
       padding: var(--space-lg) var(--space-md);
       transition: background var(--transition);
       position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: attr(data-num);
+      position: absolute;
+      bottom: -0.18em;
+      right: -0.05em;
+      font-family: var(--font-display);
+      font-size: 10rem;
+      font-weight: var(--weight-bold);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+      user-select: none;
     }
 
     .service-card:not(:last-child) {
@@ -1270,15 +972,6 @@
 
     .service-card:hover::before {
       transform: scaleX(1);
-    }
-
-    .service-number {
-      font-size: 0.6rem;
-      font-weight: var(--weight-semibold);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--color-muted);
-      margin-bottom: var(--space-lg);
     }
 
     .service-title {
@@ -1331,10 +1024,11 @@
     }
 
     .contact-heading {
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
       font-weight: var(--weight-bold);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
       color: var(--color-highlight);
       margin-bottom: var(--space-md);
     }
@@ -1462,24 +1156,283 @@
 
 
     /* =============================================
-       15. FOOTER
+       15. PROCESS
+    ============================================= */
+
+    .process {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .process-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .process-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: var(--weight-bold);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--color-highlight);
+    }
+
+    .process-steps {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 5rem 12rem 1fr;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--color-border);
+      align-items: baseline;
+    }
+
+    .process-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: var(--weight-bold);
+      color: var(--color-border);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .process-title {
+      font-size: 1.05rem;
+      font-weight: var(--weight-semibold);
+      color: var(--color-highlight);
+      letter-spacing: -0.01em;
+    }
+
+    .process-desc {
+      font-size: 0.88rem;
+      font-weight: var(--weight-light);
+      color: var(--color-muted);
+      line-height: 1.75;
+    }
+
+
+    /* =============================================
+       16. WORK LIST
+    ============================================= */
+
+    .work-list {
+      margin-top: var(--space-lg);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .work-list-item {
+      display: grid;
+      grid-template-columns: 5rem 1fr auto auto;
+      gap: var(--space-md);
+      align-items: center;
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--color-border);
+      color: inherit;
+      transition: padding-left var(--transition);
+    }
+
+    a.work-list-item:hover {
+      padding-left: 1rem;
+    }
+
+    .work-list-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: var(--weight-bold);
+      color: var(--color-border);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      transition: color var(--transition);
+    }
+
+    a.work-list-item:hover .work-list-num {
+      color: var(--color-muted);
+    }
+
+    .work-list-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+      font-weight: var(--weight-semibold);
+      color: var(--color-highlight);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .work-list-tags {
+      font-size: 0.72rem;
+      color: var(--color-muted);
+      letter-spacing: 0.06em;
+      text-align: right;
+    }
+
+    .work-list-arrow {
+      font-size: 1rem;
+      color: var(--color-muted);
+      transition: color var(--transition), transform var(--transition);
+      flex-shrink: 0;
+    }
+
+    a.work-list-item:hover .work-list-arrow {
+      color: var(--color-highlight);
+      transform: translate(3px, -3px);
+    }
+
+    .work-list-item--soon {
+      opacity: 0.38;
+      pointer-events: none;
+    }
+
+    .work-list-callout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      margin-top: 1px;
+      border: 1px dashed var(--color-border);
+      border-radius: 2px;
+      color: inherit;
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .work-list-callout:hover {
+      border-color: var(--color-muted);
+      background: var(--color-surface);
+    }
+
+    .work-list-callout-heading {
+      font-size: 1rem;
+      font-weight: var(--weight-semibold);
+      color: var(--color-muted);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
+      transition: color var(--transition);
+    }
+
+    .work-list-callout:hover .work-list-callout-heading {
+      color: var(--color-highlight);
+    }
+
+    .work-list-callout-sub {
+      font-size: 0.8rem;
+      font-weight: var(--weight-light);
+      color: var(--color-muted);
+      opacity: 0.7;
+    }
+
+    .work-list-callout-cta {
+      font-size: 0.72rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      white-space: nowrap;
+      transition: color var(--transition);
+      flex-shrink: 0;
+    }
+
+    .work-list-callout:hover .work-list-callout-cta {
+      color: var(--color-highlight);
+    }
+
+    .work-list-badge {
+      font-size: 0.58rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      border: 1px solid var(--color-border);
+      padding: 0.28rem 0.7rem;
+      border-radius: 2px;
+    }
+
+
+    /* =============================================
+       17. AVAILABILITY PILL
+    ============================================= */
+
+    .availability-pill {
+      position: fixed;
+      bottom: var(--space-md);
+      left: var(--space-md);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.62rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      background: rgba(17, 17, 17, 0.88);
+      border: 1px solid var(--color-border);
+      padding: 0.5rem 0.9rem;
+      border-radius: 100px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color var(--transition), color var(--transition);
+      text-decoration: none;
+      cursor: none;
+    }
+
+    .availability-pill:hover {
+      border-color: var(--color-muted);
+      color: var(--color-highlight);
+    }
+
+    .availability-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      flex-shrink: 0;
+      animation: pulseGreen 2.2s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      .availability-pill { display: none; }
+    }
+
+
+    /* =============================================
+       18. FOOTER
     ============================================= */
 
     .footer {
-      padding: var(--space-md);
       border-top: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    .footer-wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 16vw, 14rem);
+      font-weight: var(--weight-bold);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.05);
+      padding: var(--space-lg) var(--space-md) 0.35em;
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+      text-align: center;
+    }
+
+    .footer-bottom {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       gap: var(--space-sm);
+      padding: var(--space-md) var(--space-md) var(--space-md) calc(var(--space-md) + 120px);
     }
 
-    .footer-copy {
-      text-align: center;
-    }
-
-    .footer-back {
-      text-align: right;
+    @media (max-width: 768px) {
+      .footer-bottom {
+        padding-left: var(--space-md);
+      }
     }
 
     .footer-logo {
@@ -1489,12 +1442,14 @@
     }
 
     .footer-copy {
+      text-align: center;
       font-size: 0.7rem;
       color: var(--color-muted);
       letter-spacing: 0.05em;
     }
 
     .footer-back {
+      text-align: right;
       font-size: 0.7rem;
       font-weight: var(--weight-semibold);
       letter-spacing: 0.12em;
@@ -1528,6 +1483,14 @@
     ============================================= */
 
     @media (max-width: 900px) {
+      .process-step {
+        grid-template-columns: 4rem 1fr;
+      }
+
+      .process-step .process-desc {
+        grid-column: 2;
+      }
+
       .about-inner {
         grid-template-columns: 1fr;
         gap: var(--space-md);
@@ -1557,10 +1520,6 @@
         padding: var(--space-md);
       }
 
-      .case-study-info {
-        padding: 1.2rem var(--space-md);
-        gap: var(--space-sm);
-      }
     }
 
     @media (max-width: 600px) {
@@ -1570,15 +1529,10 @@
       }
 
       .about-stats {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .work-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer {
+      .footer-bottom {
         grid-template-columns: 1fr;
       }
 
@@ -1587,15 +1541,23 @@
         text-align: left;
       }
 
-      .case-study-info {
-        grid-template-columns: 1fr auto;
+      .work-list-item {
+        grid-template-columns: 3.5rem 1fr auto;
       }
 
-      .case-study-num { display: none; }
+      .work-list-tags { display: none; }
 
-      .case-study-tags { display: none; }
+      .process-step {
+        grid-template-columns: 3rem 1fr;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+      }
 
-      .hero-deco { display: none; }
+      .process-step .process-desc {
+        grid-column: 2;
+      }
+
+      .process-num { font-size: 1.8rem; }
 
       .hero-eyebrow {
         flex-direction: column;
@@ -1608,6 +1570,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Floating availability pill -->
+  <a href="#contact" class="availability-pill">
+    <span class="availability-pill-dot"></span>
+    <span>Available</span>
+  </a>
 
   <!-- =============================================
        CUSTOM CURSOR
@@ -1636,7 +1604,7 @@
         <a href="#contact"  data-num="04" class="nav-overlay-link">Contact</a>
       </nav>
       <!-- Massive "AVI." behind navigation -->
-      <div class="nav-overlay-name" aria-hidden="true">AVI.</div>
+      <div class="nav-overlay-name" aria-hidden="true">avisingh.studio</div>
     </div>
 
     <!-- Footer info row -->
@@ -1644,7 +1612,8 @@
       <span class="nav-overlay-location">Melbourne, Australia</span>
       <div class="nav-overlay-socials">
         <a href="https://instagram.com/avitheblingsingh" target="_blank" rel="noopener" class="nav-overlay-social">Instagram ↗&#xFE0E;</a>
-        <a href="https://x.com/avikesh_singh"         target="_blank" rel="noopener" class="nav-overlay-social">X (Twitter) ↗&#xFE0E;</a>
+        <a href="https://x.com/avikesh_singh"         target="_blank" rel="noopener" class="nav-overlay-social">X ↗&#xFE0E;</a>
+        <a href="https://linkedin.com/in/avikeshsingh" target="_blank" rel="noopener" class="nav-overlay-social">LinkedIn ↗&#xFE0E;</a>
         <a href="mailto:avi@avisingh.studio" class="nav-overlay-social">avi@avisingh.studio ↗&#xFE0E;</a>
       </div>
     </div>
@@ -1657,7 +1626,6 @@
   ============================================= -->
   <nav class="nav" id="mainNav">
     <a href="#hero" class="nav-logo"><img src="assets/logo.svg" alt="Avi" /></a>
-    <span></span>
     <div class="nav-right">
       <a href="#contact" class="nav-talk">Let's Talk ↗&#xFE0E;</a>
       <button class="nav-menu-btn" id="navHamburger" aria-label="Open menu" aria-expanded="false">
@@ -1676,13 +1644,6 @@
   ============================================= -->
   <section class="hero" id="hero">
 
-    <!-- Slowly rotating decorative star -->
-    <div class="hero-deco" aria-hidden="true">
-      <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 0 L17.6 14.4 L32 16 L17.6 17.6 L16 32 L14.4 17.6 L0 16 L14.4 14.4 Z"/>
-      </svg>
-    </div>
-
     <div class="hero-content container">
 
       <p class="hero-eyebrow">
@@ -1690,10 +1651,12 @@
         <span>Available for projects</span>
       </p>
 
-      <h1 class="hero-name">Avi</h1>
+      <h1 class="hero-name" aria-label="avisingh.studio">
+        <span class="hero-char" style="animation-delay:0.20s">a</span><span class="hero-char" style="animation-delay:0.24s">v</span><span class="hero-char" style="animation-delay:0.28s">i</span><span class="hero-char" style="animation-delay:0.32s">s</span><span class="hero-char" style="animation-delay:0.36s">i</span><span class="hero-char" style="animation-delay:0.40s">n</span><span class="hero-char" style="animation-delay:0.44s">g</span><span class="hero-char" style="animation-delay:0.48s">h</span><span class="hero-char" style="animation-delay:0.52s">.</span><span class="hero-char" style="animation-delay:0.56s">s</span><span class="hero-char" style="animation-delay:0.60s">t</span><span class="hero-char" style="animation-delay:0.64s">u</span><span class="hero-char" style="animation-delay:0.68s">d</span><span class="hero-char" style="animation-delay:0.72s">i</span><span class="hero-char" style="animation-delay:0.76s">o</span>
+      </h1>
 
       <div class="hero-bottom">
-        <p class="hero-role">Web Designer<br /><span>&amp; Creative</span></p>
+        <p class="hero-role">Web &amp; Brand Designer<br /><span>&amp; Social Creative</span></p>
         <div class="hero-right">
           <p class="hero-tagline">Helping brands look like they mean it.</p>
           <div class="hero-actions">
@@ -1782,64 +1745,32 @@
        WORK / CASE STUDIES
   ============================================= -->
   <section class="section" id="work">
-
     <div class="container">
+
       <div class="gallery-header reveal">
         <div class="gallery-header-left">
           <h2 class="work-heading">Selected Work.</h2>
           <p class="gallery-desc">Brands built from the ground up — identity, web, and everything in between.</p>
         </div>
-        <div class="gallery-nav">
-          <button class="gallery-btn" id="galleryPrev" aria-label="Previous project">←&#xFE0E;</button>
-          <button class="gallery-btn" id="galleryNext" aria-label="Next project">→&#xFE0E;</button>
-        </div>
       </div>
-      <p class="gallery-swipe-hint" id="gallerySwipeHint">
-        <span class="gallery-swipe-arrow" aria-hidden="true">→&#xFE0E;</span>
-        Swipe to explore
-      </p>
-    </div>
 
-    <div class="gallery-overflow">
-      <div class="gallery-track" id="galleryTrack">
-
-        <!-- Case Study 01: CodeDesignLab -->
-        <div class="gallery-item">
-          <a href="work/cdl/" class="gallery-card">
-            <img src="images/cdl-cover-home.png" alt="CodeDesignLab" loading="lazy" />
-            <div class="gallery-card-overlay"></div>
-            <div class="gallery-card-content">
-              <h3 class="gallery-card-title">CodeDesignLab</h3>
-              <p class="gallery-card-desc">Brand identity, web design, and social assets for an innovative design and development studio.</p>
-              <span class="gallery-card-link">View case study ↗&#xFE0E;</span>
-            </div>
-          </a>
-        </div>
-
-        <!-- Case Study 02: (Coming Soon) -->
-        <div class="gallery-item">
-          <div class="gallery-card gallery-card--soon">
-            <div class="gallery-card-placeholder"></div>
-            <div class="gallery-card-badge">Coming Soon</div>
-            <div class="gallery-card-overlay"></div>
-            <div class="gallery-card-content">
-              <h3 class="gallery-card-title">Coming Soon</h3>
-              <p class="gallery-card-desc">Want your brand here? Get in touch with me.</p>
-              <span class="gallery-card-link">Coming soon</span>
-            </div>
+      <div class="work-list">
+        <a href="work/cdl/" class="work-list-item reveal">
+          <span class="work-list-num">01</span>
+          <span class="work-list-title">CodeDesignLab</span>
+          <span class="work-list-tags">Brand Identity &middot; Web Design &middot; Social Assets</span>
+          <span class="work-list-arrow">↗&#xFE0E;</span>
+        </a>
+        <a href="#contact" class="work-list-callout reveal reveal-delay-1">
+          <div>
+            <p class="work-list-callout-heading">Your project could live here.</p>
+            <p class="work-list-callout-sub">Currently taking on new work — web, brand, and social.</p>
           </div>
-        </div>
-
+          <span class="work-list-callout-cta">Start a project ↗&#xFE0E;</span>
+        </a>
       </div>
-    </div>
 
-    <div class="container">
-      <div class="gallery-dots" id="galleryDots">
-        <button class="gallery-dot is-active" data-index="0" aria-label="Go to project 1"></button>
-        <button class="gallery-dot" data-index="1" aria-label="Go to project 2"></button>
-      </div>
     </div>
-
   </section>
 
   <hr class="divider" />
@@ -1858,8 +1789,7 @@
 
       <div class="services-grid reveal">
 
-        <div class="service-card">
-          <p class="service-number">01</p>
+        <div class="service-card" data-num="01">
           <h3 class="service-title">Web Design</h3>
           <p class="service-desc">
             Clean, purposeful websites designed to perform. Fast, responsive,
@@ -1873,9 +1803,8 @@
           </ul>
         </div>
 
-        <div class="service-card">
-          <p class="service-number">02</p>
-          <h3 class="service-title">Brand Identity &amp; Visual Design</h3>
+        <div class="service-card" data-num="02">
+          <h3 class="service-title">Brand Design</h3>
           <p class="service-desc">
             The full visual language of your business — from logo to colour palette
             to the guidelines that keep everything consistent.
@@ -1888,23 +1817,66 @@
           </ul>
         </div>
 
-        <div class="service-card">
-          <p class="service-number">03</p>
-          <h3 class="service-title">Social Media Assets</h3>
+        <div class="service-card" data-num="03">
+          <h3 class="service-title">Social Media Marketing</h3>
           <p class="service-desc">
-            Scroll-stopping visual content built for Instagram, X, TikTok, and
-            Facebook. On-brand, consistent, and ready to post.
+            Strategy, content, and paid campaigns — built to grow your audience
+            and put your brand in front of the right people.
           </p>
           <ul class="service-items">
-            <li class="service-item">Post &amp; Story templates</li>
-            <li class="service-item">Carousels &amp; banners</li>
-            <li class="service-item">Ad creative</li>
-            <li class="service-item">Content asset packs</li>
+            <li class="service-item">Content strategy &amp; planning</li>
+            <li class="service-item">Post, Story &amp; Reel templates</li>
+            <li class="service-item">Paid ad campaigns</li>
+            <li class="service-item">Ad creative &amp; copywriting</li>
           </ul>
         </div>
 
       </div>
 
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+
+  <!-- =============================================
+       PROCESS
+  ============================================= -->
+  <section class="process section" id="process">
+    <div class="container">
+
+      <div class="process-header reveal">
+        <span class="section-label">Process</span>
+        <h2 class="process-heading">How I work.</h2>
+      </div>
+
+      <div class="process-steps">
+
+        <div class="process-step reveal">
+          <span class="process-num">01</span>
+          <h3 class="process-title">Brief</h3>
+          <p class="process-desc">We talk through your goals, your audience, and what success looks like. I ask the right questions upfront so nothing gets wasted.</p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-1">
+          <span class="process-num">02</span>
+          <h3 class="process-title">Design</h3>
+          <p class="process-desc">I build out concepts and iterate fast. You're kept in the loop at every stage — no disappearing for weeks and coming back with a surprise.</p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-2">
+          <span class="process-num">03</span>
+          <h3 class="process-title">Refine</h3>
+          <p class="process-desc">We review together, sharpen the details, and get it exactly right. Most projects nail it in one or two rounds.</p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-3">
+          <span class="process-num">04</span>
+          <h3 class="process-title">Deliver</h3>
+          <p class="process-desc">Final files, clean handoff, and support if anything needs tweaking after launch. You leave with everything you need.</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -1943,6 +1915,10 @@
               <span>GitHub</span>
               <span>@avikeshsingh ↗&#xFE0E;</span>
             </a>
+            <a href="https://linkedin.com/in/avikeshsingh" target="_blank" rel="noopener" class="social-link">
+              <span>LinkedIn</span>
+              <span>Avikesh Singh ↗&#xFE0E;</span>
+            </a>
           </div>
         </div>
 
@@ -1970,9 +1946,12 @@
        FOOTER
   ============================================= -->
   <footer class="footer">
-    <a href="#hero" class="footer-logo"><img src="assets/logo.svg" alt="Avi" /></a>
-    <span class="footer-copy">© 2026 Avi. Designed &amp; Built in Melbourne, Australia.</span>
-    <a href="#hero" class="footer-back">Back to top ↑&#xFE0E;</a>
+    <span class="footer-wordmark" aria-hidden="true">avisingh.studio</span>
+    <div class="footer-bottom">
+      <a href="#hero" class="footer-logo"><img src="assets/logo.svg" alt="Avi" /></a>
+      <span class="footer-copy">© 2026 Avi. Designed &amp; built with intent.</span>
+      <a href="#hero" class="footer-back">Back to top ↑&#xFE0E;</a>
+    </div>
   </footer>
 
 
@@ -2124,11 +2103,10 @@
     }());
 
 
-    /* --- Scroll Reveal -------------------------------- */
+    /* --- Scroll Reveal + Divider Draw-on --------------- */
     (function () {
-      var items = document.querySelectorAll('.reveal');
+      var items = document.querySelectorAll('.reveal, .divider');
       if (!items.length || !('IntersectionObserver' in window)) {
-        /* Fallback: just show everything */
         items.forEach(function (el) { el.classList.add('is-visible'); });
         return;
       }
