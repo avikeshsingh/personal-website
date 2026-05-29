@@ -11,13 +11,13 @@
   <meta property="og:url"         content="https://avisingh.studio/work/cdl/" />
   <meta property="og:title"       content="CodeDesignLab — Case Study | Avi" />
   <meta property="og:description" content="How Avi built CodeDesignLab from zero — brand identity, digital storefront, social assets, and ad campaigns." />
-  <meta property="og:image"       content="https://avisingh.studio/work/cdl/images/og-card.png" />
+  <meta property="og:image"       content="https://avisingh.studio/work/cdl/images/cdl-cover.jpg" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="CodeDesignLab — Case Study | Avi" />
   <meta name="twitter:description" content="How Avi built CodeDesignLab from zero — brand identity, digital storefront, social assets, and ad campaigns." />
-  <meta name="twitter:image"       content="https://avisingh.studio/work/cdl/images/og-card.png" />
+  <meta name="twitter:image"       content="https://avisingh.studio/work/cdl/images/cdl-cover.jpg" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://avisingh.studio/work/cdl/" />
@@ -29,7 +29,7 @@
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,700;1,300&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
 
   <style>
 
@@ -46,6 +46,7 @@
       --color-accent:    #e8e8e8;
       --color-highlight: #ffffff;
 
+      --font-display:    'Cormorant', Georgia, serif;
       --font-primary:    'Poppins', sans-serif;
       --weight-light:    300;
       --weight-regular:  400;
@@ -221,15 +222,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(10, 10, 10, 0.82);
+      background: rgba(10, 10, 10, 0.58);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
       transition: box-shadow 0.5s ease;
     }
 
     .nav.scrolled {
-      box-shadow: 0 6px 48px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 48px rgba(0, 0, 0, 0.55);
     }
 
     .nav-back {
@@ -273,32 +274,19 @@
     .cs-hero::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.22) 1px, transparent 1px);
-      background-size: 60px 60px;
-      animation: gridDrift 28s linear infinite;
-      mask-image:
-        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
-        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-      mask-composite: intersect;
-      -webkit-mask-image:
-        linear-gradient(to right,  transparent, black 20%, black 80%, transparent),
-        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-      -webkit-mask-composite: source-in;
+      inset: -10%;
+      background:
+        radial-gradient(ellipse 75% 65% at 22% 35%, rgba(255,255,255,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 45% at 82% 12%, rgba(255,255,255,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 70% 88%, rgba(255,255,255,0.09) 0%, transparent 55%);
       pointer-events: none;
+      will-change: transform;
+      animation: ambientDrift 20s ease-in-out infinite alternate;
     }
 
-    @keyframes gridDrift {
-      from { background-position: 0 0; }
-      to   { background-position: 60px 60px; }
-    }
-
-    .cs-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: transparent;
-      pointer-events: none;
+    @keyframes ambientDrift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(2%, 1.5%) scale(1.06); }
     }
 
     .cs-hero-content {
@@ -308,6 +296,7 @@
     }
 
     .cs-hero-title {
+      font-family: var(--font-display);
       font-size: clamp(2rem, 8vw, 6.5rem);
       font-weight: var(--weight-bold);
       line-height: 0.92;
@@ -458,6 +447,7 @@
 
     /* Section heading inside body */
     .cs-heading {
+      font-family: var(--font-display);
       font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: var(--weight-bold);
       line-height: 1.15;
@@ -564,6 +554,7 @@
     }
 
     .cs-footer-cta-heading {
+      font-family: var(--font-display);
       font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: var(--weight-bold);
       letter-spacing: -0.02em;
