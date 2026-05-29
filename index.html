@@ -936,7 +936,7 @@
     .service-card::after {
       content: attr(data-num);
       position: absolute;
-      bottom: -0.18em;
+      bottom: 0.05em;
       right: -0.05em;
       font-family: var(--font-display);
       font-size: 10rem;
@@ -1532,13 +1532,33 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .work-list-callout {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+      }
+
+      .service-card::after {
+        font-size: 6.5rem;
+        bottom: 0.1em;
+      }
+
+      .footer-wordmark {
+        font-size: 10.5vw;
+      }
+
       .footer-bottom {
         grid-template-columns: 1fr;
+        justify-items: center;
       }
 
       .footer-copy,
       .footer-back {
-        text-align: left;
+        text-align: center;
+      }
+
+      .footer-logo {
+        display: none;
       }
 
       .work-list-item {
@@ -1613,7 +1633,6 @@
       <div class="nav-overlay-socials">
         <a href="https://instagram.com/avitheblingsingh" target="_blank" rel="noopener" class="nav-overlay-social">Instagram ↗&#xFE0E;</a>
         <a href="https://x.com/avikesh_singh"         target="_blank" rel="noopener" class="nav-overlay-social">X ↗&#xFE0E;</a>
-        <a href="https://linkedin.com/in/avikeshsingh" target="_blank" rel="noopener" class="nav-overlay-social">LinkedIn ↗&#xFE0E;</a>
         <a href="mailto:avi@avisingh.studio" class="nav-overlay-social">avi@avisingh.studio ↗&#xFE0E;</a>
       </div>
     </div>
@@ -1914,10 +1933,6 @@
             <a href="https://github.com/avikeshsingh" target="_blank" rel="noopener" class="social-link">
               <span>GitHub</span>
               <span>@avikeshsingh ↗&#xFE0E;</span>
-            </a>
-            <a href="https://linkedin.com/in/avikeshsingh" target="_blank" rel="noopener" class="social-link">
-              <span>LinkedIn</span>
-              <span>Avikesh Singh ↗&#xFE0E;</span>
             </a>
           </div>
         </div>
