@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>avisingh.studio - Web Design, Brand Design & Social Media Marketing</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTJE64P51K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTJE64P51K');
+  </script>
+
+  <title>Web Design &amp; Brand Design Melbourne | avisingh.studio</title>
   <meta name="description" content="avisingh.studio is a Melbourne-based creative agency. Specialising in web design, brand design, and social media marketing." />
 
   <!-- Open Graph -->
@@ -21,6 +31,89 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://avisingh.studio/" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://avisingh.studio/#website",
+        "url": "https://avisingh.studio/",
+        "name": "avisingh.studio",
+        "description": "Melbourne-based web design and brand design studio."
+      },
+      {
+        "@type": "Person",
+        "@id": "https://avisingh.studio/#person",
+        "name": "Avi Singh",
+        "url": "https://avisingh.studio/",
+        "jobTitle": "Web Designer & Brand Designer",
+        "description": "Self-taught web designer and creative based in Melbourne, Australia. Founder of CodeDesignLab.",
+        "email": "avi@avisingh.studio",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Melbourne",
+          "addressRegion": "Victoria",
+          "addressCountry": "AU"
+        },
+        "sameAs": [
+          "https://instagram.com/avitheblingsingh",
+          "https://x.com/avikesh_singh",
+          "https://github.com/avikeshsingh"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://avisingh.studio/#business",
+        "name": "avisingh.studio",
+        "url": "https://avisingh.studio/",
+        "image": "https://avisingh.studio/images/og-card.png",
+        "description": "Melbourne-based creative studio specialising in web design, brand design, and social media marketing.",
+        "email": "avi@avisingh.studio",
+        "founder": { "@id": "https://avisingh.studio/#person" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Melbourne",
+          "addressRegion": "Victoria",
+          "addressCountry": "AU"
+        },
+        "areaServed": ["Melbourne", "Australia"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Design Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Web Design",
+                "description": "Clean, purposeful websites designed to perform. Fast, responsive, and built to convert."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Brand Design",
+                "description": "Full visual identity systems — logo, colour palette, typography, and brand guidelines."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Social Media Marketing",
+                "description": "Strategy, content, and paid campaigns built to grow your audience."
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
 
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
@@ -1643,7 +1736,7 @@
        NAVIGATION
   ============================================= -->
   <nav class="nav" id="mainNav">
-    <a href="#hero" class="nav-logo"><img src="assets/logo.svg" alt="Logo" /></a>
+    <a href="#hero" class="nav-logo"><img src="assets/logo.svg" alt="avisingh.studio" /></a>
     <div class="nav-right">
       <a href="#contact" class="nav-talk">Let's Talk ↗&#xFE0E;</a>
       <button class="nav-menu-btn" id="navHamburger" aria-label="Open menu" aria-expanded="false">
@@ -1674,7 +1767,7 @@
       </h1>
 
       <div class="hero-bottom">
-        <p class="hero-role">Web &amp; Brand Designer<br /><span>&amp; Social Creative</span></p>
+        <h2 class="hero-role">Web &amp; Brand Designer<br /><span>&amp; Social Creative — Melbourne</span></h2>
         <div class="hero-right">
           <p class="hero-tagline">Helping brands look like they mean it.</p>
           <div class="hero-actions">
@@ -1773,7 +1866,7 @@
       </div>
 
       <div class="work-list">
-        <a href="work/cdl/" class="work-list-item reveal">
+        <a href="work/codedesignlab/" class="work-list-item reveal">
           <span class="work-list-num">01</span>
           <span class="work-list-title">CodeDesignLab</span>
           <span class="work-list-tags">Brand Identity &middot; Web Design &middot; Social Assets</span>
@@ -1962,7 +2055,7 @@
   <footer class="footer">
     <span class="footer-wordmark" aria-hidden="true">avisingh.studio</span>
     <div class="footer-bottom">
-      <a href="#hero" class="footer-logo"><img src="assets/logo.svg" alt="Footer Logo" /></a>
+      <a href="#hero" class="footer-logo"><img src="assets/logo.svg" alt="" /></a>
       <span class="footer-copy">© 2026 Avi. Designed &amp; built in Melbourne, Australia.</span>
       <a href="#hero" class="footer-back">Back to top ↑&#xFE0E;</a>
     </div>
