@@ -9,8 +9,12 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied' });
     gtag('js', new Date());
     gtag('config', 'G-XMKZQ8VTYR');
+    if (localStorage.getItem('cookie_consent') === 'accepted') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
   </script>
 
   <title>CodeDesignLab Case Study — avisingh.studio</title>
@@ -682,6 +686,60 @@
 
     .footer-back:hover { color: var(--color-highlight); }
 
+    .footer-policy {
+      color: var(--color-muted);
+      border-bottom: 1px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .footer-policy:hover { color: var(--color-highlight); border-color: var(--color-muted); }
+
+    /* Cookie banner */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 450;
+      background: rgba(10, 10, 10, 0.97);
+      border-top: 1px solid var(--color-border);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      transform: translateY(100%);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cookie-banner.is-visible { transform: translateY(0); }
+
+    .cookie-banner-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--space-md); padding: 1rem var(--space-md);
+      max-width: var(--max-width); margin: 0 auto; flex-wrap: wrap;
+    }
+
+    .cookie-banner-text {
+      font-size: 0.78rem; font-weight: var(--weight-light);
+      color: var(--color-muted); line-height: 1.6;
+      flex: 1; min-width: 200px;
+    }
+
+    .cookie-banner-link {
+      color: var(--color-text); border-bottom: 1px solid var(--color-border);
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .cookie-banner-link:hover { color: var(--color-highlight); border-color: var(--color-muted); }
+
+    .cookie-banner-actions { display: flex; gap: 0.75rem; flex-shrink: 0; }
+
+    .cookie-btn {
+      font-size: 0.67rem; font-weight: var(--weight-semibold);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.55rem 1.25rem; border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    .cookie-btn-decline { color: var(--color-muted); border: 1px solid var(--color-border); }
+    .cookie-btn-decline:hover { color: var(--color-text); border-color: var(--color-muted); }
+    .cookie-btn-accept { color: var(--color-bg); background: var(--color-highlight); }
+    .cookie-btn-accept:hover { opacity: 0.85; }
+
 
     /* =============================================
        10. ANIMATIONS
@@ -966,9 +1024,24 @@
   ============================================= -->
   <footer class="footer">
     <a href="../../" class="footer-logo"><img src="../../assets/logo.svg" alt="Avi" /></a>
-    <span class="footer-copy">© 2026 Avi. Designed &amp; built with intent.</span>
+    <span class="footer-copy">© 2026 Avi. Designed &amp; built with intent. &nbsp;&middot;&nbsp; <a href="../../privacy-policy.html" class="footer-policy">Privacy Policy</a></span>
     <a href="#hero" class="footer-back">Back to top ↑&#xFE0E;</a>
   </footer>
+
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent">
+    <div class="cookie-banner-inner">
+      <p class="cookie-banner-text">
+        This site uses Google Analytics to understand visitor traffic. No personal data is sold or shared.
+        <a href="../../privacy-policy.html" class="cookie-banner-link">Privacy Policy</a>
+      </p>
+      <div class="cookie-banner-actions">
+        <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Decline</button>
+        <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept</button>
+      </div>
+    </div>
+  </div>
 
 
   <script>
@@ -1000,6 +1073,33 @@
       window.addEventListener('scroll', function () {
         nav.classList.toggle('scrolled', window.scrollY > 24);
       }, { passive: true });
+    }());
+
+    /* Cookie Consent Banner */
+    (function () {
+      var banner     = document.getElementById('cookieBanner');
+      var acceptBtn  = document.getElementById('cookieAccept');
+      var declineBtn = document.getElementById('cookieDecline');
+      if (!banner) return;
+      function dismiss() { banner.classList.remove('is-visible'); }
+      if (!localStorage.getItem('cookie_consent')) {
+        setTimeout(function () { banner.classList.add('is-visible'); }, 900);
+      }
+      if (acceptBtn) {
+        acceptBtn.addEventListener('click', function () {
+          localStorage.setItem('cookie_consent', 'accepted');
+          if (typeof gtag === 'function') {
+            gtag('consent', 'update', { 'analytics_storage': 'granted' });
+          }
+          dismiss();
+        });
+      }
+      if (declineBtn) {
+        declineBtn.addEventListener('click', function () {
+          localStorage.setItem('cookie_consent', 'declined');
+          dismiss();
+        });
+      }
     }());
 
     /* Scroll Reveal */
